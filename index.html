@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- <link rel="stylesheet" href="node_modules/@fontsource/firago/300.css" /> -->
+
+    <title>Real Estate</title>
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <header class="head">
+      <image src="Logo.png" class="logo"></image>
+    </header>
+    <main>
+      <div id="options">
+        <div id="filters">
+          <div class="dropdown" data-dropdown>
+            <button class="link" data-dropdown-button>რეგიონი</button>
+            <div class="dropdown-menu">
+              <h1 class="dropdown-menu-header">რეგიონის მიხედვით</h1>
+              <div class="checkbox-groups">
+                <div class="checkbox-group">
+                  <label><input type="checkbox" />ქართლი</label>
+                  <label><input type="checkbox" />კახეთი</label>
+                  <label><input type="checkbox" />იმერეთი</label>
+                  <label><input type="checkbox" />სამეგრელო</label>
+                </div>
+                <div class="checkbox-group">
+                  <label><input type="checkbox" />გურია</label>
+                  <label><input type="checkbox" />რაჭა</label>
+                  <label><input type="checkbox" />ლეჩხუმი</label>
+                  <label><input type="checkbox" />სამცხე-ჯავახეთი</label>
+                </div>
+                <div class="checkbox-group">
+                  <label><input type="checkbox" />აჭარა</label>
+                  <label><input type="checkbox" />სვანეთი</label>
+                  <label><input type="checkbox" />მცხეთა-მთიანეთი</label>
+                  <label><input type="checkbox" />თბილისი</label>
+                </div>
+              </div>
+              <button id="choose">არჩევა</button>
+            </div>
+          </div>
+          <div class="dropdown" data-dropdown>
+            <button class="link" data-dropdown-button>საფასო კატეგორია</button>
+            <div class="dropdown-menu">
+              <h1 class="dropdown-menu-header">ფასის მიხედვით</h1>
+              <div id="lower-upper">
+                <div class="input-lower-upper">
+                  <input class="lari" placeholder="დან" />
+                  <span id="lari-number-1">₾</span>
+                </div>
+                <div class="input-lower-upper">
+                  <input class="lari" placeholder="დან" />
+                  <span id="lari-number-2">₾</span>
+                </div>
+              </div>
+              <div id="guide-content">
+                <div id="mins">
+                  <h4>მინ. ფასი</h2>
+                  <p class="min-cost">50,000₾</p>
+                  <p class="min-cost">100,000₾</p>
+                  <p class="min-cost">150,000₾</p>
+                  <p class="min-cost">200,000₾</p>
+                  <p class="min-cost">300,000₾</p>
+                </div>
+                <div id="maxs">
+                  <h4>მაქს. ფასი</h2>
+                  <p class="min-cost">50,000₾</p>
+                  <p class="min-cost">100,000₾</p>
+                  <p class="min-cost">150,000₾</p>
+                  <p class="min-cost">200,000₾</p>
+                  <p class="min-cost">300,000₾</p></div>
+              </div>
+            </div>
+          </div>
+          <div class="dropdown" data-dropdown>
+            <button class="link" data-dropdown-button>ფართობი</button>
+          </div>
+          <div class="dropdown" data-dropdown>
+            <button class="link" data-dropdown-button>
+              საძინებლის რაოდენობა
+            </button>
+          </div>
+        </div>
+        <div id="add-buttons">
+          <button id="add-listing">+ ლისტინგის დამატება</button>
+          <button id="add-agent">+ აგენტის დამატება</button>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

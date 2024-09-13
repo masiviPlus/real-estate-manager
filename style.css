@@ -1,0 +1,196 @@
+@import url("node_modules/@fontsource/firago/300.css");
+@import url("node_modules/@fontsource/firago/400.css");
+@import url("node_modules/@fontsource/firago/700.css");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* font-family: "Noto Sans Georgian", sans-serif; */
+  font-family: "FiraGO", sans-serif;
+}
+/* LOGO-02 3 */
+.logo {
+  /* LOGO-02 3 */
+  width: 150px;
+  height: 24px;
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+.logo:hover {
+  cursor: pointer;
+}
+.head {
+  background-color: #ffffff;
+  height: 100px;
+  width: 100%;
+  border-bottom: 1px solid #dbdbdb;
+  padding: 38px 162px 38px 162px;
+}
+
+#options {
+  position: fixed;
+  top: 177px;
+  left: 162px;
+  display: flex;
+  justify-content: space-between;
+  width: 1596px;
+  align-items: center;
+  padding-right: 162px;
+}
+#filters {
+  display: flex;
+  gap: 24px;
+  border: 1px solid #dbdbdb;
+  border-radius: 10px;
+  height: min-content;
+  padding: 6px;
+}
+main {
+  width: 1596px;
+}
+select:hover {
+  cursor: pointer;
+}
+button:hover {
+  cursor: pointer;
+}
+#add-listing,
+#choose {
+  border: none;
+  border-radius: 10px;
+  padding: 10px 16px 10px 16px;
+  background-color: #f93b1d;
+  color: white;
+}
+#add-agent {
+  border: 1px solid #f93b1d;
+  border-radius: 10px;
+  padding: 10px 16px 10px 16px;
+  background-color: white;
+  color: #f93b1d;
+}
+#add-buttons {
+  display: flex;
+  gap: 16px;
+}
+#add-listing:hover,
+#choose:hover {
+  background-color: #d63118;
+}
+#add-agent:hover {
+  border-color: #d63118;
+  color: #d63118;
+  background-color: #f0f0f0;
+}
+.link {
+  background-color: Transparent;
+  border: none;
+  font-weight: 700;
+}
+.dropdown {
+  position: relative;
+  font-weight: 400;
+  padding: 8px 14px 8px 14px;
+}
+.dropdown-menu {
+  position: absolute;
+  left: -6px;
+  top: calc(100% + 20px);
+  background-color: white;
+  border: 1px solid #dbdbdb;
+  padding: 24px;
+  border-radius: 10px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 150ms ease-in-out;
+  width: max-content;
+  box-shadow: 5px 5px 15px #e2e2e2;
+}
+.dropdown.active > .link,
+.link:hover {
+  color: black;
+}
+.dropdown.active {
+  background-color: #f5f5f5;
+  border-radius: 10px;
+}
+/* .dropdown.active > .link {
+  background-color: #dbdbdb;
+} */
+.dropdown.active > .link + .dropdown-menu {
+  opacity: 1;
+  pointer-events: auto;
+}
+label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  /* line-height: 17px; */
+  font-size: 14px;
+  font-weight: 400;
+}
+input[type="checkbox"]:hover {
+  cursor: pointer;
+  accent-color: green;
+}
+input {
+  accent-color: green;
+}
+.checkbox-groups {
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+}
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.dropdown-menu-header {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+#choose {
+  float: right;
+  margin-top: 20px;
+}
+#lower-upper {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  width: 325px;
+}
+.lari {
+  border-radius: 6px;
+  border: 1px solid #dbdbdb;
+  height: 42px;
+  padding: 10px 20px;
+  padding-right: 30px;
+  width: 150px;
+  position: relative;
+}
+#lari-number-1 {
+  position: absolute;
+  left: 155px;
+  top: 77px;
+}
+#lari-number-2 {
+  position: absolute;
+  left: 330px;
+  top: 77px;
+}
+#guide-content {
+  display: flex;
+  gap: 24px;
+  margin-top: 24px;
+}
+#mins,
+#maxs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 155px;
+}
