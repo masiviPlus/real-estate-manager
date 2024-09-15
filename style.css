@@ -156,6 +156,7 @@ input {
 .choose {
   float: right;
   margin-top: 35px;
+  width: 79px;
 }
 #lower-upper {
   display: flex;
@@ -207,4 +208,8 @@ input {
 .count {
   width: 41px;
   padding: 15px;
+}
+#rooms-count {
+  display: flex;
+  flex-direction: column;
 }
