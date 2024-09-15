@@ -46,7 +46,7 @@
                   <label><input type="checkbox" />თბილისი</label>
                 </div>
               </div>
-              <button id="choose">არჩევა</button>
+              <button class="choose">არჩევა</button>
             </div>
           </div>
           <div class="dropdown" data-dropdown>
@@ -63,8 +63,8 @@
                   <span id="lari-number-2">₾</span>
                 </div>
               </div>
-              <div id="guide-content">
-                <div id="mins">
+              <div class="guide-content">
+                <div class="mins">
                   <h4>მინ. ფასი</h2>
                   <p class="min-cost">50,000₾</p>
                   <p class="min-cost">100,000₾</p>
@@ -72,7 +72,7 @@
                   <p class="min-cost">200,000₾</p>
                   <p class="min-cost">300,000₾</p>
                 </div>
-                <div id="maxs">
+                <div class="maxs">
                   <h4>მაქს. ფასი</h2>
                   <p class="min-cost">50,000₾</p>
                   <p class="min-cost">100,000₾</p>
@@ -80,15 +80,54 @@
                   <p class="min-cost">200,000₾</p>
                   <p class="min-cost">300,000₾</p></div>
               </div>
+              <button class="choose">არჩევა</button>
             </div>
           </div>
           <div class="dropdown" data-dropdown>
             <button class="link" data-dropdown-button>ფართობი</button>
+            <div class="dropdown-menu">
+              <h1 class="dropdown-menu-header">ფართობის მიხედვით</h1>
+              <div id="lower-upper">
+              <div class="input-lower-upper">
+                <input class="lari" placeholder="დან" />
+                <span id="area-1" >მ²</span>
+              </div>
+              <div class="input-lower-upper">
+                <input class="lari" placeholder="დან" />
+                <span id="area-2" >მ²</span>
+              </div>
+              
+            </div>
+            <div class="guide-content">
+              <div class="mins">
+                <h4>მინ. მ²</h2>
+                <p class="min-cost">50,000 მ²</p>
+                <p class="min-cost">100,000 მ²</p>
+                <p class="min-cost">150,000 მ²</p>
+                <p class="min-cost">200,000 მ²</p>
+                <p class="min-cost">300,000 მ²</p>
+              </div>
+              <div class="maxs">
+                <h4>მაქს. მ²</h2>
+                <p class="min-cost">50,000 მ²</p>
+                <p class="min-cost">100,000 მ²</p>
+                <p class="min-cost">150,000 მ²</p>
+                <p class="min-cost">200,000 მ²</p>
+                <p class="min-cost">300,000 მ²</p></div>
+            </div>
+            <button class="choose">არჩევა</button>
+          </div>
           </div>
           <div class="dropdown" data-dropdown>
             <button class="link" data-dropdown-button>
               საძინებლის რაოდენობა
             </button>
+            <div class="dropdown-menu">
+              <h1 class="dropdown-menu-header">საძინებლების რაოდენობა</h1>
+              <input  placeholder="2" class="lari count">
+              <button class="choose">არჩევა</button>
+              
+            </div>
           </div>
         </div>
         <div id="add-buttons">
