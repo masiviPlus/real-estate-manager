@@ -17,11 +17,12 @@
   </head>
   <body>
     <header class="head">
-      <image src="Logo.png" class="logo"></image>
+      <img src="Logo.png" class="logo" alt="Company Logo"></img>
     </header>
-    <main>
+    <section>
       <div id="options">
-        <div id="filters">
+        <div id="filters-and-filtered">
+        <section id="filters">
           <div class="dropdown" data-dropdown>
             <button class="link" data-dropdown-button>რეგიონი</button>
             <div class="dropdown-menu">
@@ -46,7 +47,7 @@
                   <label><input type="checkbox" />თბილისი</label>
                 </div>
               </div>
-              <button class="choose">არჩევა</button>
+              <button class="choose" id="choose-number-1">არჩევა</button>
             </div>
           </div>
           <div class="dropdown" data-dropdown>
@@ -80,7 +81,7 @@
                   <p class="min-cost">200,000₾</p>
                   <p class="min-cost">300,000₾</p></div>
               </div>
-              <button class="choose">არჩევა</button>
+              <button class="choose" id="choose-number-2">არჩევა</button>
             </div>
           </div>
           <div class="dropdown" data-dropdown>
@@ -102,20 +103,20 @@
               <div class="mins">
                 <h4>მინ. მ²</h2>
                 <p class="min-cost">50,000 მ²</p>
-                <p class="min-cost">100,000 მ²</p>
-                <p class="min-cost">150,000 მ²</p>
-                <p class="min-cost">200,000 მ²</p>
-                <p class="min-cost">300,000 მ²</p>
+                <p class="min-cost">50,000 მ²</p>
+                <p class="min-cost">50,000 მ²</p>
+                <p class="min-cost">50,000 მ²</p>
+                <p class="min-cost">50,000 მ²</p>
               </div>
               <div class="maxs">
                 <h4>მაქს. მ²</h2>
                 <p class="min-cost">50,000 მ²</p>
-                <p class="min-cost">100,000 მ²</p>
-                <p class="min-cost">150,000 მ²</p>
-                <p class="min-cost">200,000 მ²</p>
-                <p class="min-cost">300,000 მ²</p></div>
+                <p class="min-cost">50,000 მ²</p>
+                <p class="min-cost">50,000 მ²</p>
+                <p class="min-cost">50,000 მ²</p>
+                <p class="min-cost">50,000 მ²</p></div>
             </div>
-            <button class="choose">არჩევა</button>
+            <button class="choose" id="choose-number-3">არჩევა</button>
           </div>
           </div>
           <div class="dropdown" data-dropdown>
@@ -129,16 +130,32 @@
                 <input  placeholder="2" class="lari count">
               
               </div>
-              <button class="choose right-position">არჩევა</button>
+              <button class="choose" id="choose-number-4">არჩევა</button>
               
             </div>
+          </div>
+
+         
+       
+         </section>  
+         <div id="selected">
+            <div id="selected-filters">
+
+            </div>
+            <button class="clear-button-design visible">გასუფთავება</button>
+
           </div>
         </div>
         <div id="add-buttons">
           <button id="add-listing">+ ლისტინგის დამატება</button>
           <button id="add-agent">+ აგენტის დამატება</button>
         </div>
-      </div>
-    </main>
+      </div> 
+      
+    </section>
+   <main>
+    
+   </main>
+   
   </body>
 </html>

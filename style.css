@@ -8,6 +8,7 @@
   /* font-family: "Noto Sans Georgian", sans-serif; */
   font-family: "FiraGO", sans-serif;
 }
+
 /* LOGO-02 3 */
 .logo {
   /* LOGO-02 3 */
@@ -30,25 +31,33 @@
 }
 
 #options {
-  position: fixed;
-  top: 177px;
-  left: 162px;
+  /* position: fixed; */
+  /* top: 177px;
+  left: 162px; */
+  margin-top: 77px;
+  margin-left: 162px;
   display: flex;
   justify-content: space-between;
   width: 1596px;
-  align-items: center;
+  align-items: flex-start;
   padding-right: 162px;
 }
 #filters {
+  position: relative;
   display: flex;
   gap: 24px;
   border: 1px solid #dbdbdb;
   border-radius: 10px;
   height: min-content;
   padding: 6px;
+  background-color: white;
 }
-main {
+/* main {
   width: 1596px;
+} */
+section {
+  background-color: white;
+  display: inline;
 }
 select:hover {
   cursor: pointer;
@@ -70,6 +79,7 @@ button:hover {
   padding: 10px 16px 10px 16px;
   background-color: white;
   color: #f93b1d;
+  height: 47px;
 }
 #add-buttons {
   display: flex;
@@ -212,4 +222,49 @@ input {
 #rooms-count {
   display: flex;
   flex-direction: column;
+}
+
+#selected-filters {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+#selected {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  gap: 15px;
+}
+.clear-button-design {
+  border: none;
+  background: transparent;
+  font-weight: 700;
+}
+.invisible {
+  opacity: 0;
+}
+.filtered-by-functionality {
+  border: 1px solid #dbdbdb;
+  border-radius: 43px;
+  background-color: transparent;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 10px;
+  gap: 4px;
+}
+.filtered-by-functionality:hover {
+  cursor: pointer;
+}
+.filtered-by {
+  font-size: 14px;
+  color: #021526cc;
+}
+.remove-filter-x {
+  border: none;
+  background-color: transparent;
+  color: #021526cc;
+  font-size: 16px;
+  margin-bottom: 2px;
 }
