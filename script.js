@@ -1,10 +1,10 @@
 const updateVisibility = () => {
+  const clearButton = document.querySelector(".clear-button-design");
+
   if (!selectedFilterData || selectedFilterData.length === 0) {
-    document.querySelector(".clear-button-design").classList.add("invisible");
-  } else if (selectedFilterData.length > 0) {
-    document
-      .querySelector(".clear-button-design")
-      .classList.toggle("invisible");
+    clearButton.classList.add("invisible");
+  } else {
+    clearButton.classList.remove("invisible");
   }
 };
 
@@ -40,23 +40,36 @@ document
 
     const filterList = document.getElementById("selected-filters");
     filterList.innerHTML = "";
+
     selectedFilterData.forEach((filter) => {
       const div = document.createElement("div");
       // div.textContent = filter;
       // div.classList.add("");
       div.innerHTML = `
-      <div class="filtered-by-functionality">
+      <div class="filtered-by-functionality" functionality>
       <div class="filtered-by">
       ${filter}
       </div>
-      <button class="remove-filter-x">x
+      <button class="remove-filter-x" clear-x>x
       </button>
        </div>
       
-      
-      
       `;
+
       filterList.appendChild(div);
+      div.querySelector(".remove-filter-x").addEventListener("click", () => {
+        // Remove this filter from the selectedFilterData array
+        selectedFilterData = selectedFilterData.filter(
+          (item) => item !== filter
+        );
+
+        // Remove the filter from the DOM
+        div.remove();
+        console.log(selectedFilterData);
+
+        // Optionally, update the clear button visibility
+        updateVisibility();
+      });
     });
     document
       .querySelectorAll("#filters input[type='checkbox']")
@@ -75,9 +88,23 @@ document.querySelector(".clear-button-design").addEventListener("click", () => {
   filterList.innerHTML = "";
   updateVisibility();
 });
-document.querySelector(".remove-filter-x").addEventListener("click", () => {
-  selectedFilterData.length = 0;
-  const filterList = document.getElementById("selected-filters");
-  filterList.innerHTML = "";
-  updateVisibility();
-});
+// document.querySelector(".remove-filter-x").addEventListener("click", (e) => {
+//   const isX = e.target.matches("[clear-x]");
+//   if (!isX && e.target.closest("[functionality]") != null) return;
+
+//   if (isX) {
+//     selectedFilterData.length = 0;
+//     const filterList = document.getElementById("selected-filters");
+//     filterList.innerHTML = "";
+//   }
+
+//   updateVisibility();
+// });
+
+document
+  .getElementById("choose-number-2")
+  .addEventListener("click", function () {
+    console.log("hello from reagion");
+    document.querySelector(".active").classList.remove("active");
+    const selectedFilters = [];
+  });
