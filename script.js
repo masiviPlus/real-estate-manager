@@ -107,4 +107,50 @@ document
     console.log("hello from reagion");
     document.querySelector(".active").classList.remove("active");
     const selectedFilters = [];
+    if (
+      document.getElementById("lari-lower").value &&
+      document.getElementById("lari-upper").value
+    ) {
+      selectedFilters.push(document.getElementById("lari-lower").value);
+      selectedFilters.push(document.getElementById("lari-upper").value);
+      console.log("put through");
+      console.log(selectedFilters);
+
+      selectedFilterData = selectedFilters;
+
+      const filterList = document.getElementById("selected-filters");
+      filterList.innerHTML = "";
+
+      const div = document.createElement("div");
+      // div.textContent = filter;
+      // div.classList.add("");
+      div.innerHTML = `
+         <div class="filtered-by-functionality" functionality>
+         <div class="filtered-by">
+         ${selectedFilters[0]}₾ - ${selectedFilters[1]}₾
+         </div>
+         <button class="remove-filter-x" clear-x>x
+         </button>
+          </div>
+         
+         `;
+
+      filterList.appendChild(div);
+      div.querySelector(".remove-filter-x").addEventListener("click", () => {
+        // Remove this filter from the selectedFilterData array
+        selectedFilterData = selectedFilterData.filter(
+          (item) => item !== filter
+        );
+
+        // Remove the filter from the DOM
+        div.remove();
+        console.log(selectedFilterData);
+
+        // Optionally, update the clear button visibility
+
+        updateVisibility();
+      });
+    } else {
+      console.log("error");
+    }
   });

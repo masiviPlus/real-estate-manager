@@ -268,3 +268,9 @@ input {
   font-size: 16px;
   margin-bottom: 2px;
 }
+.clear-button-design {
+  pointer-events: auto;
+}
+.clear-button-design.invisible {
+  pointer-events: none;
+}
