@@ -90,11 +90,11 @@
               <h1 class="dropdown-menu-header">ფართობის მიხედვით</h1>
               <div id="lower-upper">
               <div class="input-lower-upper">
-                <input class="lari" placeholder="დან" />
+                <input class="lari" id="area-lower"placeholder="დან" />
                 <span id="area-1" >მ²</span>
               </div>
               <div class="input-lower-upper">
-                <input class="lari" placeholder="დან" />
+                <input class="lari" id="area-upper" placeholder="დან" />
                 <span id="area-2" >მ²</span>
               </div>
               
@@ -127,7 +127,7 @@
               
               <div id="rooms-count">
                 <h1 class="dropdown-menu-header">საძინებლების რაოდენობა</h1>
-                <input  placeholder="2" class="lari count">
+                <input  placeholder="2" id="bedrooms-input" class="lari count">
               
               </div>
               <button class="choose" id="choose-number-4">არჩევა</button>
@@ -154,8 +154,9 @@
       
     </section>
    <main>
+    <listing-card class="grid-center"></listing-card>
     
    </main>
-   
+   <script src="listing.js" defer></script>
   </body>
 </html>
