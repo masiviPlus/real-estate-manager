@@ -11,15 +11,20 @@ const cityURL =
 class listingCard extends HTMLElement {
   constructor() {
     super();
+    document
+      .querySelector(".clear-button-design")
+      .addEventListener("click", () => {
+        this.innerHTML = "";
+      });
   }
-  // Define the getAgents() function as a class method
+
   async getListings() {
     try {
       const response = await fetch(apiURL, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${apiToken}`, // Use the token from apiToken
+          Authorization: `Bearer ${apiToken}`,
         },
       });
 
@@ -27,30 +32,80 @@ class listingCard extends HTMLElement {
         throw new Error("Error: " + response.status);
       }
 
-      const data = await response.json(); // Parse the response JSON
-      return data; // Return the agent data
+      const data = await response.json();
+      return data;
     } catch (error) {
       console.error("Failed to fetch listings:", error);
     }
   }
 
-  // Render the listing cards by fetching agent data
   async render() {
-    const listings = await this.getListings(); // Wait for agents data
+    const listings = await this.getListings();
     const container = document.createElement("div");
-    const cities = await this.getCities(); // Wait for the city data
-    const regions = await this.getRegions(); // Wait for the region data
+    const cities = await this.getCities();
+    const regions = await this.getRegions();
+    const filteredListings = this.filterListings(listings);
 
     container.classList.add("listings-grid");
-    // Check if there are agents and iterate through them
-    if (listings && listings.length) {
-      listings.forEach((listing) => {
-        const city = cities.find((city) => city.id === listing.city_id);
-        const region = regions.find((region) => region.id === city?.region_id);
+    if (filteredListings && filteredListings.length) {
+      filteredListings.forEach((listing) => {
+        async function getDescription(id) {
+          try {
+            const response = await fetch(
+              `https://api.real-estate-manager.redberryinternship.ge/api/real-estates/${id}`,
+              {
+                method: "GET",
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: `Bearer ${apiToken}`,
+                },
+              }
+            );
 
+            if (!response.ok) {
+              throw new Error("Error: " + response.status);
+            }
+
+            const data = await response.json();
+
+            return data.description;
+          } catch (error) {
+            console.error("Failed to fetch listings:", error);
+          }
+        }
+        async function getAgentData(id) {
+          try {
+            const response = await fetch(
+              `https://api.real-estate-manager.redberryinternship.ge/api/real-estates/${id}`,
+              {
+                method: "GET",
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: `Bearer ${apiToken}`,
+                },
+              }
+            );
+
+            if (!response.ok) {
+              throw new Error("Error: " + response.status);
+            }
+
+            const data = await response.json();
+
+            return data.agent;
+          } catch (error) {
+            console.error("Failed to fetch listings:", error);
+          }
+        }
+        const city = cities.find((city) => city.id === listing.city_id);
+        console.log(city);
+        const region = regions.find((region) => region.id === city?.region_id);
+        const statusLabel = listing.is_rental ? "ქირავდება" : "იყიდება";
         const card = document.createElement("div");
         card.classList.add("listing-card");
+
         card.innerHTML = `
+          <div class="status-label">${statusLabel}</div>
             <img src="${listing.image}" class="img-apartment" alt="Apartment Picture">
             <div class="card-body">
              <h3 class="cost">${listing.price} ₾</h3>
@@ -72,22 +127,91 @@ class listingCard extends HTMLElement {
             
         `;
 
-        container.appendChild(card); // Append each card to the container
+        container.appendChild(card);
+        card.addEventListener("click", () => {
+          document.getElementById("section").classList.add("hidden");
+          document.querySelector("listing-card").style.display = "none";
+
+          document.getElementById("details-section").style.display = "block";
+
+          document.getElementById("detail-image").src = listing.image;
+          document.getElementById(
+            "detail-price"
+          ).textContent = `${listing.price} ₾`;
+          document.getElementById(
+            "detail-location"
+          ).textContent = `${listing.city.name}, ${listing.address}`;
+          document.getElementById(
+            "detail-area"
+          ).textContent = `ფართი ${listing.area} მ²`;
+          document.getElementById(
+            "bedrooms-count"
+          ).textContent = `საძინებელი ${listing.bedrooms}`;
+          document.getElementById(
+            "postal-code"
+          ).textContent = `საფოსტო ინდექსი ${listing.zip_code}`;
+
+          getDescription(listing.id).then((description) => {
+            document.getElementById("detail-description").textContent =
+              description || "აღწერა არ არის მოცემული";
+          });
+
+          getAgentData(listing.id).then((info) => {
+            document.getElementById("agent-image").src = info.avatar;
+            document.getElementById(
+              "agent-name"
+            ).textContent = `${info.name} ${info.surname}`;
+            document.getElementById("position").textContent = `აგენტი`;
+            document.getElementById("agent-email").textContent = info.email;
+            document.getElementById("agent-number").textContent = info.phone;
+          });
+
+          document
+            .getElementById("confirmBtn")
+            .addEventListener("click", async function () {
+              try {
+                const response = await fetch(
+                  `https://api.real-estate-manager.redberryinternship.ge/api/real-estates/${listing.id}`,
+                  {
+                    method: "DELETE",
+                    headers: {
+                      "Content-Type": "application/json",
+                      Authorization: `Bearer ${apiToken}`,
+                    },
+                  }
+                );
+
+                if (!response.ok) {
+                  throw new Error(`Error: ${response.status}`);
+                }
+
+                const data = await response.json();
+                alert(data.message);
+                document.getElementById("section").classList.remove("hidden");
+                document.querySelector("listing-card").style.display = "grid";
+
+                document.getElementById("details-section").style.display =
+                  "none";
+                updateListings();
+              } catch (error) {
+                console.error("Error deleting real estate:", error);
+                alert("Failed to delete the real estate.");
+              }
+            });
+        });
       });
     } else {
       container.innerHTML = "<p>No listings available.</p>";
     }
 
-    this.appendChild(container); // Append the container to the custom element
+    this.appendChild(container);
   }
-  // Fetch all cities
   async getCities() {
     try {
       const response = await fetch(cityURL, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${apiToken}`, // Use your actual token
         },
       });
 
@@ -96,7 +220,7 @@ class listingCard extends HTMLElement {
       }
 
       const data = await response.json();
-      return data; // Return cities data
+      return data;
     } catch (error) {
       console.error("Failed to fetch cities:", error);
     }
@@ -109,7 +233,7 @@ class listingCard extends HTMLElement {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${apiToken}`, // Use your actual token
+          //   Authorization: `Bearer ${apiToken}`, // Use your actual token
         },
       });
 
@@ -124,9 +248,150 @@ class listingCard extends HTMLElement {
     }
   }
 
-  // Lifecycle method called when the element is connected to the DOM
+  filterListings(listings) {
+    // Example: filtering by selected filter data
+    return listings.filter((listing) => {
+      const passesPriceFilter = this.checkPriceFilter(listing.price);
+      const passesAreaFilter = this.checkAreaFilter(listing.area);
+      const passesBedroomFilter = this.checkBedroomFilter(listing.bedrooms);
+      const passesRegionFilter = this.checkRegionFilter(
+        listing.city.region.name
+      );
+      console.log(`Bedrooms ${listing.bedrooms}: ${passesBedroomFilter}`);
+      return (
+        passesPriceFilter &&
+        passesAreaFilter &&
+        passesBedroomFilter &&
+        passesRegionFilter
+      );
+    });
+  }
+  checkBedroomFilter(bedrooms) {
+    const bedroomFilterElement = document.querySelector(".bedrooms-count");
+    const bedroomsValue = parseInt(
+      document.querySelector(".bedrooms-count")?.textContent
+    );
+    if (!bedroomFilterElement || !bedroomsValue) {
+      console.log("No bedroom filter applied.");
+      return true;
+    }
+    // const bedroomFilter = document
+    //   .querySelectorAll(".bedrooms-count")
+    //   .textContent.trim();
+    // if (!bedroomsValue) return true;
+    // else {
+    //   return bedrooms === bedroomsValue;
+    // }
+
+    if (!bedroomFilterElement || !bedroomsValue) {
+      // If the bedroom filter is not set or empty, don't filter by bedrooms
+      return true;
+    }
+
+    return bedrooms === bedroomsValue;
+  }
+
+  checkPriceFilter(price) {
+    const lowerUpperBound = document
+      .querySelector(".lari-lower-upper")
+      ?.textContent.replaceAll("₾", "")
+      .split(" - ")
+      .map((value) => parseFloat(value.trim()));
+    if (!lowerUpperBound) return true;
+    const lowerBound = lowerUpperBound[0];
+    const upperBound = lowerUpperBound[1];
+
+    if (isNaN(lowerBound) || isNaN(upperBound)) return true;
+
+    return price >= lowerBound && price <= upperBound;
+  }
+
+  checkAreaFilter(area) {
+    const lowerUpperBound = document
+      .querySelector(".area-lower-upper")
+      ?.textContent.replaceAll("მ²", "")
+      .split(" - ")
+      .map((value) => parseFloat(value.trim()));
+    if (!lowerUpperBound) return true;
+    const lowerBound = lowerUpperBound[0];
+    const upperBound = lowerUpperBound[1];
+    if (!lowerBound || !upperBound) return true;
+
+    return area >= lowerBound && area <= upperBound;
+  }
+
+  checkRegionFilter(region) {
+    const regionFilterElement = document.querySelector(".region");
+    const regionValue = document.querySelector(".region")?.textContent;
+    if (!regionFilterElement || !regionValue) {
+      console.log("No region filter applied.");
+      return true;
+    }
+
+    if (!regionValue) return true;
+    else {
+      console.log(regionValue);
+      return region === regionValue;
+    }
+  }
+
   connectedCallback() {
-    this.render(); // Call render when the component is connected to the DOM
+    this.render();
+    document.querySelector(".logo").addEventListener("click", () => {
+      document.getElementById("section").classList.remove("hidden");
+
+      document.querySelector("listing-card").style.display = "grid";
+
+      document.getElementById("details-section").style.display = "none";
+    });
+    const openModalBtn = document.getElementById("delete-listing");
+    const popupModal = document.getElementById("popupModal");
+    const confirmBtn = document.getElementById("confirmBtn");
+    const cancelBtn = document.getElementById("cancelBtn");
+
+    openModalBtn.addEventListener("click", () => {
+      popupModal.classList.add("show");
+    });
+
+    confirmBtn.addEventListener("click", () => {
+      popupModal.classList.remove("show");
+    });
+
+    cancelBtn.addEventListener("click", () => {
+      popupModal.classList.remove("show");
+    });
+
+    document
+      .getElementById("bedrooms-input")
+      .addEventListener("change", this.updateListings.bind(this));
+
+    const selectedFiltersContainer =
+      document.getElementById("selected-filters");
+
+    const callback = (mutationsList) => {
+      for (let mutation of mutationsList) {
+        if (mutation.type === "childList") {
+          this.updateListings();
+          break;
+        }
+      }
+    };
+
+    const observer = new MutationObserver(callback);
+
+    const config = { childList: true, subtree: true };
+
+    observer.observe(selectedFiltersContainer, config);
+
+    const clearButtons = document.querySelectorAll(".remove-filter-x");
+    clearButtons.forEach((button) => {
+      button.addEventListener("click", this.updateListings.bind(this));
+    });
+  }
+
+  updateListings() {
+    this.innerHTML = "";
+    this.render();
   }
 }
 

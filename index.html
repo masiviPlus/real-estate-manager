@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="detailed.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -19,7 +20,7 @@
     <header class="head">
       <img src="Logo.png" class="logo" alt="Company Logo"></img>
     </header>
-    <section>
+    <section id="section">
       <div id="options">
         <div id="filters-and-filtered">
         <section id="filters">
@@ -156,7 +157,74 @@
    <main>
     <listing-card class="grid-center"></listing-card>
     
+    <div id="details-section" class="details" style="display: none;">
+      <div id='center'>
+
+        <div id="flex-dir">
+          <button onclick="goBack()" id="go-back"><svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M244 400L100 256l144-144M120 256h292"/></svg></button>
+          <div id="detailed-info-card">
+            <img id="detail-image" src="" alt="Detail Image">
+            <div id="detailed-info">
+              <h3 id="detail-price"></h3>
+              <div id="loc-flex">
+              <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><path d="M256 32C167.67 32 96 96.51 96 176c0 128 160 304 160 304s160-176 160-304c0-79.49-71.67-144-160-144zm0 224a64 64 0 1164-64 64.07 64.07 0 01-64 64z"/></svg>
+              <p id="detail-location" class="text-color"> </p>
+            </div>
+            <div id="area-flex">
+            <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><path d="M416 464H96a48.05 48.05 0 01-48-48V96a48.05 48.05 0 0148-48h320a48.05 48.05 0 0148 48v320a48.05 48.05 0 01-48 48z"/></svg>
+              <p id="detail-area" class="text-color"></p>
+            </div>
+            <div id="bedrooms-flex">
+              <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><path d="M432 230.7a79.44 79.44 0 00-32-6.7H112a79.51 79.51 0 00-32 6.69A80.09 80.09 0 0032 304v112a16 16 0 0032 0v-8a8.1 8.1 0 018-8h368a8.1 8.1 0 018 8v8a16 16 0 0032 0V304a80.09 80.09 0 00-48-73.3zM376 80H136a56 56 0 00-56 56v72a4 4 0 005.11 3.84A95.5 95.5 0 01112 208h4.23a4 4 0 004-3.55A32 32 0 01152 176h56a32 32 0 0131.8 28.45 4 4 0 004 3.55h24.46a4 4 0 004-3.55A32 32 0 01304 176h56a32 32 0 0131.8 28.45 4 4 0 004 3.55h4.2a95.51 95.51 0 0126.89 3.85A4 4 0 00432 208v-72a56 56 0 00-56-56z"/></svg>
+              <p id="bedrooms-count" class="text-color"></p>
+            </div>
+            <div id="code-flex">
+              <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><path d="M491.31 324.69L432 265.37a31.8 31.8 0 00-22.63-9.37H272v-32h144a32 32 0 0032-32V96a32 32 0 00-32-32H272V48a16 16 0 00-32 0v16H102.63A31.8 31.8 0 0080 73.37l-59.31 59.32a16 16 0 000 22.62L80 214.63a31.8 31.8 0 0022.63 9.37H240v32H96a32 32 0 00-32 32v96a32 32 0 0032 32h144v48a16 16 0 0032 0v-48h137.37a31.8 31.8 0 0022.63-9.37l59.31-59.32a16 16 0 000-22.62z"/></svg>
+              <p id="postal-code" class="text-color"></p>
+            </div>
+              <p id="detail-description"></p>
+              <div id="agent-info">
+
+                <div id="flexy">
+                  <img id="agent-image" src="" alt="Agent Avatar">
+                  <div id="beside-image">
+                    
+                    <h3 id="agent-name"></h3>
+                    <p id="position"></p>
+                  </div></div>
+                  <div id="agent-extra-info">
+                    <div id="email">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><rect x="48" y="96" width="416" height="320" rx="40" ry="40" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M112 160l144 112 144-112"/></svg>
+                      <p id="agent-email"></p>
+                    </div>
+                    <div id="phone">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><path d="M451 374c-15.88-16-54.34-39.35-73-48.76-24.3-12.24-26.3-13.24-45.4.95-12.74 9.47-21.21 17.93-36.12 14.75s-47.31-21.11-75.68-49.39-47.34-61.62-50.53-76.48 5.41-23.23 14.79-36c13.22-18 12.22-21 .92-45.3-8.81-18.9-32.84-57-48.9-72.8C119.9 44 119.9 47 108.83 51.6A160.15 160.15 0 0083 65.37C67 76 58.12 84.83 51.91 98.1s-9 44.38 23.07 102.64 54.57 88.05 101.14 134.49S258.5 406.64 310.85 436c64.76 36.27 89.6 29.2 102.91 23s22.18-15 32.83-31a159.09 159.09 0 0013.8-25.8C465 391.17 468 391.17 451 374z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"/></svg>
+                      <p id="agent-number"></p>
+                    </div>
+                    
+                  </div>
+                
+              </div> 
+              <button id="delete-listing">ლისტინგის წაშლა</button>  
+            </div>
+         
+          </div>
+          <h2 style="margin-top: 40px;">ბინები მსგავს ლოკაციაზე</h2>
+        </div>
+        
+      </div>
+    </div>
+    <div id="popupModal" class="modal">
+      <div class="modal-content">
+        <h2 id="asking">გსურთ ლისტინგის წაშლა?</h2>
+        <div class="modal-buttons">
+          <button id="cancelBtn" class="modal-btn">გაუქმება</button>
+          <button id="confirmBtn" class="modal-btn">დადასტურება</button>
+        </div>
+      </div>
+    </div>
    </main>
    <script src="listing.js" defer></script>
+   <script src="detailed.js" defer></script>
   </body>
 </html>

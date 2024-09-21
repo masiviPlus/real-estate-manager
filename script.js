@@ -1,3 +1,5 @@
+// import { listingCard } from "./listing.js";
+
 const updateVisibility = () => {
   const clearButton = document.querySelector(".clear-button-design");
 
@@ -47,7 +49,7 @@ document
 
         div.innerHTML = `
       <div class="filtered-by-functionality" functionality>
-        <div class="filtered-by">${filter}</div>
+        <div class="filtered-by region">${filter}</div>
         <button class="remove-filter-x" clear-x>x</button>
       </div>`;
 
@@ -88,6 +90,8 @@ document
     if (lowerBound && upperBound) {
       const priceRangeFilter = `${lowerBound}₾ - ${upperBound}₾`;
 
+      document.getElementById("lari-lower").value = "";
+      document.getElementById("lari-upper").value = "";
       if (!selectedFilterData.includes(priceRangeFilter)) {
         selectedFilterData.push(priceRangeFilter);
 
@@ -96,7 +100,7 @@ document
 
         div.innerHTML = `
       <div class="filtered-by-functionality" functionality>
-        <div class="filtered-by">${priceRangeFilter}</div>
+        <div class="filtered-by lari-lower-upper">${priceRangeFilter}</div>
         <button class="remove-filter-x" clear-x>x</button>
       </div>`;
 
@@ -111,7 +115,12 @@ document
           updateVisibility();
         });
       }
-
+      console.log(
+        document
+          .querySelector(".lari-lower-upper")
+          .textContent.replaceAll("₾", "")
+          .split(" - ")
+      );
       console.log("Saved Filters:", selectedFilterData);
     } else {
       console.log("Error: Both price range values are required.");
@@ -135,13 +144,14 @@ document
 
       if (!selectedFilterData.includes(areaRangeFilter)) {
         selectedFilterData.push(areaRangeFilter);
-
+        document.getElementById("area-lower").value = "";
+        document.getElementById("area-upper").value = "";
         const filterList = document.getElementById("selected-filters");
         const div = document.createElement("div");
 
         div.innerHTML = `
       <div class="filtered-by-functionality" functionality>
-        <div class="filtered-by">${areaRangeFilter}</div>
+        <div class="filtered-by area-lower-upper">${areaRangeFilter}</div>
         <button class="remove-filter-x" clear-x>x</button>
       </div>`;
 
@@ -177,24 +187,27 @@ document
   .getElementById("choose-number-4")
   .addEventListener("click", function () {
     console.log("bedrooms count selected");
-    document.querySelector(".active").classList.remove();
+    document.querySelector(".active").classList.remove("active");
 
-    const bedroomsCount = document.getElementById("bedrooms-input").value;
+    let bedroomsCount = document.getElementById("bedrooms-input").value;
 
     if (bedroomsCount) {
       if (!selectedFilterData.includes(`${bedroomsCount}`)) {
         selectedFilterData.push(bedroomsCount);
         const filterList = document.getElementById("selected-filters");
         const div = document.createElement("div");
-
+        document.getElementById("bedrooms-input").value = "";
         div.innerHTML = `
       <div class="filtered-by-functionality" functionality>
-        <div class="filtered-by">${bedroomsCount}</div>
+        <div class="filtered-by bedrooms-count">${bedroomsCount}</div>
         <button class="remove-filter-x" clear-x>x</button>
       </div>`;
 
         filterList.appendChild(div);
 
+        console.log(
+          typeof parseInt(document.querySelector(".bedrooms-count").textContent)
+        );
         div.querySelector(".remove-filter-x").addEventListener("click", () => {
           selectedFilterData = selectedFilterData.filter(
             (item) => item !== bedroomsCount
@@ -205,6 +218,7 @@ document
       } else {
         console.log("Error: Both area range values are required.");
       }
+
       updateVisibility();
     }
   });

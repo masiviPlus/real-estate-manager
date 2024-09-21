@@ -1,5 +1,6 @@
 @import url("node_modules/@fontsource/firago/300.css");
 @import url("node_modules/@fontsource/firago/400.css");
+@import url("node_modules/@fontsource/firago/500.css");
 @import url("node_modules/@fontsource/firago/700.css");
 * {
   margin: 0;
@@ -37,6 +38,7 @@
   /* margin-top: 77px;
   margin-left: 162px; */
   display: flex;
+  /* height: 47px; */
   justify-content: space-between;
   width: 1596px;
   align-items: flex-start;
@@ -303,6 +305,7 @@ input {
 }
 .listing-card {
   transition: transform 0.5s ease, box-shadow 0.5s ease;
+  position: relative;
 }
 .listing-card:hover {
   cursor: pointer;
@@ -346,4 +349,21 @@ input {
   display: flex;
   justify-content: center;
   margin-top: 25px;
+}
+.status-label {
+  position: absolute;
+  top: 20px;
+  left: 15px;
+  width: 90px;
+  font-size: 12px;
+  color: #ffffff;
+  background-color: #02152680;
+  padding: 6px;
+  display: flex;
+  justify-content: center;
+  font-weight: 500;
+  border-radius: 15px;
+}
+.hidden {
+  display: none;
 }

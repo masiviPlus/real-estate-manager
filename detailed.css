@@ -1,0 +1,212 @@
+@import url("node_modules/@fontsource/firago/300.css");
+@import url("node_modules/@fontsource/firago/400.css");
+@import url("node_modules/@fontsource/firago/500.css");
+@import url("node_modules/@fontsource/firago/700.css");
+.details {
+  padding: 20px;
+  display: none;
+}
+
+#detail-image {
+  width: 100%;
+  max-width: 600px;
+}
+#details-section {
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  margin-top: 40px;
+  margin-left: 10px;
+}
+#flex-dir {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 1591px;
+  gap: 15px;
+  /* align-items: center; */
+}
+#detailed-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+#center {
+  display: flex;
+  justify-content: center;
+}
+#go-back {
+  background-color: transparent;
+  border: none;
+  width: 32px;
+}
+#detailed-info-card {
+  display: flex;
+  flex-direction: row;
+  gap: 68px;
+}
+#detail-price {
+  font-size: 48px;
+}
+#detail-image {
+  width: 839px;
+  border-radius: 14px 14px 0px 0px;
+}
+#loc-flex {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+#area-flex {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+#bedrooms-flex {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+#code-flex {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+#agent-image {
+  width: 72px;
+  height: 72px;
+  border-radius: 100%;
+}
+#agent-info {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+  border: 1px solid #dbdbdb;
+  border-radius: 10px;
+  gap: 15px;
+  padding: 25px;
+  width: 503px;
+}
+#beside-image {
+  display: flex;
+  flex-direction: column;
+}
+#flexy {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+#email {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  align-items: center;
+}
+#phone {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  align-items: center;
+}
+#detail-description {
+  margin-top: 15px;
+  color: #808a93;
+}
+.text-color {
+  color: #808a93;
+}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  backdrop-filter: blur(8px); /* Blurs the background */
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 30px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  width: 623px;
+  height: 222px;
+}
+
+.modal-buttons {
+  margin-top: 25px;
+}
+
+.modal-btn {
+  padding: 10px 20px;
+  margin: 0 10px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.modal-btn#confirmBtn {
+  background-color: #f93b1d;
+  color: #ffffff;
+  border: 1px solid #f93b1d;
+}
+.modal-btn#confirmBtn:hover {
+  background-color: #df3014;
+}
+
+.modal-btn#cancelBtn {
+  background-color: rgb(255, 255, 255);
+  color: #f93b1d;
+  border: 1px solid #f93b1d;
+}
+.modal-btn#cancelBtn:hover {
+  background-color: #f93b1d;
+  color: white;
+}
+
+/* Modal open state */
+.modal.show {
+  display: flex; /* Show the modal as a flexbox */
+}
+#asking {
+  font-weight: 400;
+  font-size: 20px;
+}
+#delete-listing {
+  background-color: transparent;
+  color: #676e76;
+  border: 1px solid #676e76;
+  border-radius: 8px;
+  padding: 10px;
+  width: 151px;
+  height: 34px;
+  font-size: 12px;
+}
+#delete-listing:hover {
+  background-color: #676e76;
+  color: white;
+}
+
+#agent-name {
+  font-size: 16px;
+  font-weight: 400;
+  margin-top: 10px;
+}
+#position {
+  color: #676e76;
+}
+#email {
+  color: #676e76;
+}
+#phone {
+  color: #676e76;
+}
